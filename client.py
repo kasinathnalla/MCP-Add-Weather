@@ -1,3 +1,4 @@
+import streamlit as st
 from langchain_mcp_adapters.client import MultiServerMCPClient
 from langgraph.prebuilt import create_react_agent
 from langchain_groq import ChatGroq
@@ -11,6 +12,8 @@ from typing import Dict, Any
 import logging
 import re
 
+st.header("MCP Client")
+st.sidebar.title("MCP Client")
 # Reduce verbose logging
 logging.getLogger().setLevel(logging.ERROR)
 logging.getLogger("langchain_mcp_adapters").setLevel(logging.ERROR)
@@ -65,10 +68,13 @@ async def main():
             math_result = extract_number_from_response(math_answer)
             if math_result:
                 print(f"Extracted number : {math_result}")
+                st.write(f"Extracted number : {math_result}")
         else:
             print(f"Math Answer: {final_message}")
+            st.write(f"Math Answer: {final_message}")
     else:
         print(f"Math Response: {math_response}")
+        st.write(f"Math Response: {math_response}")
 
     # Use the math result in weather query
     weather_query = "What is weather in "+str(math_result)+"?"
@@ -85,10 +91,13 @@ async def main():
         final_message = weather_response['messages'][-1]
         if hasattr(final_message, 'content'):
             print(f"Weather Answer: {final_message.content}")
+            st.write(f"Weather Answer: {final_message.content}")
         else:
             print(f"Weather Answer: {final_message}")
+            st.write(f"Weather Answer: {final_message}")
     else:
         print(f"Weather Response: {weather_response}")
+        st.write(f"Weather Response: {weather_response}")
 
 if __name__ == "__main__":
     asyncio.run(main())
