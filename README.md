@@ -23,7 +23,14 @@ Open Terminal 2 to run client that aggregates addition and weather
 ```uv venv```
 ```source .venv/bin/activate```
 ```uv add -r requirements.txt```
-```python client.py```
+```python client.py``` or ```python client_local_ollama.py``` for local
+
+
+To RUN Locally
+
+Install Ollama. Once Ollama installed, Please verify by running 
+```ollama run llama3``` if it worked then we are good to go.
+
 
 
 --------------
